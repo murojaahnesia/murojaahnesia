@@ -7,25 +7,23 @@
           content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Portfolio Ahmad — Web Developer & Designer">
+          content="Murajaahnesia — kelas murajaah online untuk menjaga hafalan Al-Qur'an secara konsisten.">
 
-    <title>Ahmad — Web Developer</title>
+    <title>Murajaahnesia — Jaga Hafalan, Kuatkan Murajaah</title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
+
 
 <style>
 
-/* =====================================
+/* =========================================
    RESET
-===================================== */
+========================================= */
 
 * {
     margin: 0;
@@ -38,10 +36,14 @@ html {
 }
 
 body {
-    font-family: "Inter", sans-serif;
-    background: #090909;
-    color: #f5f5f5;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: #f7f3e8;
+    color: #12372a;
     overflow-x: hidden;
+}
+
+body.lock {
+    overflow: hidden;
 }
 
 a {
@@ -54,93 +56,159 @@ button {
 }
 
 
-/* =====================================
-   VARIABLES
-===================================== */
+/* =========================================
+   SCROLL PROGRESS
+========================================= */
 
-:root {
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    --bg: #090909;
+    width: 0%;
+    height: 3px;
 
-    --card: #111111;
+    background: #c9a45c;
 
-    --card2: #151515;
-
-    --text: #f5f5f5;
-
-    --muted: #8c8c8c;
-
-    --line: rgba(255,255,255,.08);
-
-    --accent: #d6ff3f;
-
+    z-index: 10000;
 }
 
 
-/* =====================================
-   NOISE
-===================================== */
+/* =========================================
+   PRELOADER
+========================================= */
 
-body::before {
-
-    content: "";
+.preloader {
 
     position: fixed;
 
     inset: 0;
 
+    background: #12372a;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.preloader.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
     pointer-events: none;
+}
 
-    opacity: .025;
+.loader-content {
 
-    z-index: 1000;
+    text-align: center;
 
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    color: white;
+}
 
+.loader-content img {
+
+    width: 85px;
+    height: 85px;
+
+    object-fit: contain;
+
+    margin-bottom: 20px;
+}
+
+.loader-line {
+
+    width: 120px;
+
+    height: 2px;
+
+    background: rgba(255,255,255,.15);
+
+    overflow: hidden;
+
+    margin: auto;
+}
+
+.loader-line::after {
+
+    content: "";
+
+    display: block;
+
+    width: 50%;
+
+    height: 100%;
+
+    background: #c9a45c;
+
+    animation: loading 1.1s infinite ease-in-out;
+}
+
+.loader-content p {
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,.55);
+
+    margin-top: 15px;
+}
+
+@keyframes loading {
+
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(260%);
+    }
 }
 
 
-/* =====================================
+/* =========================================
    NAVBAR
-===================================== */
+========================================= */
 
 .navbar {
 
     position: fixed;
 
     top: 0;
-
     left: 0;
 
     width: 100%;
 
-    padding: 22px 6%;
+    z-index: 900;
 
-    z-index: 100;
+    padding: 20px 7%;
 
-    transition: .3s;
-
+    transition: .35s;
 }
 
 .navbar.scrolled {
 
-    background:
-        rgba(9,9,9,.82);
+    background: rgba(247,243,232,.92);
 
-    backdrop-filter:
-        blur(15px);
+    backdrop-filter: blur(16px);
 
-    border-bottom:
-        1px solid var(--line);
-
+    box-shadow:
+        0 8px 30px rgba(18,55,42,.06);
 }
 
 .nav-container {
 
     max-width: 1200px;
-
-    width: 100%;
 
     margin: auto;
 
@@ -149,202 +217,200 @@ body::before {
     align-items: center;
 
     justify-content: space-between;
-
-    gap: 30px;
 }
 
-/* =====================================
-   AH.dev NAVBAR LOGO
-===================================== */
+.logo {
 
-/* =====================================
-   AH.dev TEXT LOGO
-===================================== */
-
-.navbar-logo {
     display: flex;
+
     align-items: center;
 
-    flex-shrink: 0;
+    gap: 12px;
 
-    color: #ffffff;
+    font-size: 20px;
 
-    font-size: 21px;
     font-weight: 800;
-
-    letter-spacing: -1px;
-
-    text-decoration: none;
-
-    transition: .3s ease;
 }
 
-.navbar-logo span {
-    color: var(--accent);
+.logo img {
+
+    width: 44px;
+    height: 44px;
+
+    object-fit: contain;
 }
 
-.navbar-logo:hover {
-    transform: translateY(-2px);
-}
-.nav-links {
+.nav-btn {
 
-    display: flex;
+    padding: 12px 20px;
 
-    gap: 28px;
-
-}
-
-.nav-links {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 28px;
-
-    flex: 1;
-}
-
-.nav-links a:hover {
+    background: #12372a;
 
     color: white;
 
-}
-
-.nav-cta {
-
-    padding:
-        11px 18px;
-
     border-radius: 50px;
 
-    background: white;
-
-    color: black;
-
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 700;
 
     transition: .3s;
-
 }
 
-.nav-cta:hover {
+.nav-btn:hover {
 
-    transform:
-        translateY(-2px);
-
+    transform: translateY(-3px);
 }
 
 
-/* =====================================
+/* =========================================
    HERO
-===================================== */
+========================================= */
 
 .hero {
 
     min-height: 100vh;
 
     padding:
-        160px 6% 100px;
+        140px
+        7%
+        80px;
 
     display: flex;
 
     align-items: center;
 
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(201,164,92,.12);
+
+    top: -220px;
+    right: -160px;
+}
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(18,55,42,.08);
+
+    bottom: -160px;
+    left: -100px;
 }
 
 .hero-container {
 
-    max-width: 1200px;
-
     width: 100%;
+
+    max-width: 1200px;
 
     margin: auto;
 
-}
+    display: grid;
 
-.eyebrow {
+    grid-template-columns:
+        1.05fr
+        .95fr;
 
-    display: inline-flex;
+    gap: 60px;
 
     align-items: center;
 
-    gap: 8px;
+    position: relative;
 
-    color: var(--accent);
+    z-index: 2;
+}
 
-    font-size: 12px;
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.badge {
+
+    display: inline-flex;
+
+    padding: 9px 16px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(18,55,42,.08);
+
+    border:
+        1px solid
+        rgba(18,55,42,.1);
+
+    font-size: 13px;
 
     font-weight: 700;
 
     margin-bottom: 25px;
-
-}
-
-.eyebrow::before {
-
-    content: "";
-
-    width: 7px;
-
-    height: 7px;
-
-    background: var(--accent);
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 15px var(--accent);
-
 }
 
 .hero h1 {
 
-    max-width: 900px;
-
     font-size:
-        clamp(48px, 8vw, 100px);
+        clamp(42px,6vw,76px);
 
-    line-height: .98;
+    line-height: 1.05;
 
-    letter-spacing: -6px;
+    letter-spacing: -3px;
 
-    margin-bottom: 30px;
-
+    margin-bottom: 25px;
 }
 
 .hero h1 span {
 
-    color: var(--accent);
-
+    color: #b08a45;
 }
 
-.hero-description {
+.hero p {
 
-    max-width: 620px;
+    max-width: 580px;
 
-    color: var(--muted);
-
-    font-size: 16px;
+    font-size: 17px;
 
     line-height: 1.8;
 
-    margin-bottom: 35px;
+    color: #52665d;
 
+    margin-bottom: 35px;
 }
 
 .hero-buttons {
 
     display: flex;
 
-    gap: 12px;
+    gap: 15px;
 
     flex-wrap: wrap;
-
 }
 
 .primary-btn,
@@ -356,119 +422,187 @@ body::before {
 
     justify-content: center;
 
-    padding:
-        15px 23px;
+    padding: 16px 25px;
 
     border-radius: 50px;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 700;
 
     transition: .3s;
-
 }
 
 .primary-btn {
 
-    background: var(--accent);
+    background: #12372a;
 
-    color: #080808;
+    color: white;
 
+    box-shadow:
+        0 15px 30px
+        rgba(18,55,42,.18);
 }
 
 .primary-btn:hover {
 
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-        0 15px 35px
-        rgba(214,255,63,.15);
-
+    transform: translateY(-4px);
 }
 
 .secondary-btn {
 
     border:
-        1px solid var(--line);
-
-    color: white;
-
+        1px solid
+        rgba(18,55,42,.2);
 }
 
 .secondary-btn:hover {
 
-    background: white;
+    background: #12372a;
 
-    color: black;
-
+    color: white;
 }
 
 
-/* =====================================
-   HERO BOTTOM
-===================================== */
+/* =========================================
+   HERO CARD
+========================================= */
 
-.hero-bottom {
-
-    margin-top: 100px;
+.hero-visual {
 
     display: flex;
 
-    align-items: center;
+    justify-content: center;
 
-    justify-content: space-between;
-
-    border-top:
-        1px solid var(--line);
-
-    padding-top: 25px;
-
+    transition:
+        transform .2s linear;
 }
 
-.hero-bottom p {
+.hero-card {
 
-    color: #666;
+    width:
+        min(430px,100%);
 
-    font-size: 11px;
+    aspect-ratio: 4 / 5;
 
+    border-radius: 35px;
+
+    background: #12372a;
+
+    padding: 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 80px
+        rgba(18,55,42,.25);
 }
 
-.scroll-text {
+.hero-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius: 50%;
+
+    top: -100px;
+    right: -100px;
+}
+
+.hero-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border:
+        1px solid
+        rgba(201,164,92,.35);
+
+    border-radius: 50%;
+
+    bottom: -100px;
+    left: -80px;
+}
+
+.hero-card-inner {
+
+    height: 100%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius: 25px;
 
     display: flex;
 
+    flex-direction: column;
+
+    justify-content: center;
+
     align-items: center;
 
-    gap: 10px;
+    text-align: center;
 
-    color: #666;
+    color: white;
 
-    font-size: 11px;
+    padding: 30px;
 
+    position: relative;
+
+    z-index: 2;
 }
 
-.scroll-line {
+.hero-logo {
 
-    width: 50px;
+    width: 90px;
+    height: 90px;
 
-    height: 1px;
+    object-fit: contain;
 
-    background: #555;
+    margin-bottom: 25px;
+}
 
+.hero-card h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+.hero-card p {
+
+    color:
+        rgba(255,255,255,.7);
+
+    font-size: 14px;
+
+    line-height: 1.7;
 }
 
 
-/* =====================================
-   SECTION
-===================================== */
+/* =========================================
+   GENERAL SECTION
+========================================= */
 
 section {
 
     padding:
-        120px 6%;
-
+        110px 7%;
 }
 
 .section-container {
@@ -476,269 +610,250 @@ section {
     max-width: 1200px;
 
     margin: auto;
-
 }
 
-.section-label {
+.section-heading {
 
-    color: var(--accent);
+    text-align: center;
 
-    font-size: 11px;
+    max-width: 700px;
 
-    font-weight: 700;
+    margin:
+        0 auto 60px;
+}
 
-    letter-spacing: 2px;
+.section-heading span {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    color: #b08a45;
 
     text-transform: uppercase;
 
-    margin-bottom: 15px;
-
+    letter-spacing: 2px;
 }
 
-.section-title {
+.section-heading h2 {
 
     font-size:
-        clamp(34px, 5vw, 58px);
+        clamp(32px,4vw,48px);
 
-    line-height: 1.05;
+    line-height: 1.15;
 
-    letter-spacing: -3px;
+    margin:
+        12px 0 18px;
 
+    letter-spacing: -1.5px;
+}
+
+.section-heading p {
+
+    color: #64756d;
+
+    line-height: 1.8;
 }
 
 
-/* =====================================
-   ABOUT
-===================================== */
+/* =========================================
+   STATISTICS
+========================================= */
 
-.about-grid {
+.stats-section {
 
-    margin-top: 55px;
+    background: #12372a;
+
+    color: white;
+
+    padding:
+        65px 7%;
+}
+
+.stats-container {
+
+    max-width: 1100px;
+
+    margin: auto;
 
     display: grid;
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(4,1fr);
 
-    gap: 60px;
+    gap: 20px;
 
+    text-align: center;
 }
 
-.about-text {
+.stat {
 
-    color: #999;
+    padding: 20px;
 
-    font-size: 15px;
-
-    line-height: 1.9;
-
+    border-right:
+        1px solid
+        rgba(255,255,255,.1);
 }
 
-.about-text strong {
+.stat:last-child {
 
-    color: white;
-
+    border-right: none;
 }
 
-.skills {
+.stat h2 {
 
-    display: flex;
+    font-size: 42px;
 
-    flex-wrap: wrap;
+    color: #c9a45c;
 
-    gap: 9px;
-
-    align-content: flex-start;
-
+    margin-bottom: 8px;
 }
 
-.skill {
+.stat p {
 
-    padding:
-        10px 14px;
+    color:
+        rgba(255,255,255,.6);
 
-    border:
-        1px solid var(--line);
-
-    border-radius: 50px;
-
-    color: #aaa;
-
-    font-size: 11px;
-
-    transition: .3s;
-
-}
-
-.skill:hover {
-
-    border-color:
-        var(--accent);
-
-    color: var(--accent);
-
+    font-size: 13px;
 }
 
 
-/* =====================================
-   PROJECT
-===================================== */
+/* =========================================
+   PRESTASI
+========================================= */
 
-.project-section {
+.prestasi {
 
-    background: #0c0c0c;
-
+    background: white;
 }
 
-.project-header {
+.prestasi-grid {
 
-    display: flex;
+    display: grid;
 
-    justify-content: space-between;
+    grid-template-columns:
+        repeat(3,1fr);
 
-    align-items: flex-end;
-
-    gap: 30px;
-
-    margin-bottom: 45px;
-
+    gap: 25px;
 }
 
-.project-number {
+.prestasi-card {
 
-    color: #555;
+    background: #f8f7f2;
 
-    font-size: 12px;
-
-}
-
-.project-card {
-
-    border:
-        1px solid var(--line);
-
-    border-radius: 30px;
+    border-radius: 25px;
 
     overflow: hidden;
-
-    background: var(--card);
-
-    transition: .4s;
-
-}
-
-.project-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color:
-        rgba(214,255,63,.2);
-
-    box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.3);
-
-}
-
-
-/* =====================================
-   PROJECT PREVIEW
-===================================== */
-
-.project-preview {
-
-    min-height: 500px;
-
-    padding: 25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #153b2e,
-            #0b1f18
-        );
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-.project-preview::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-
-    height: 500px;
-
-    border-radius: 50%;
 
     border:
         1px solid
-        rgba(214,255,63,.15);
+        rgba(18,55,42,.07);
 
-    top: -250px;
-
-    right: -100px;
-
+    transition: .4s;
 }
 
-.browser {
+.prestasi-card:hover {
 
-    position: absolute;
+    transform:
+        translateY(-8px);
 
-    inset:
-        40px 50px;
+    box-shadow:
+        0 25px 50px
+        rgba(18,55,42,.1);
+}
 
-    background: #f7f3e8;
+.prestasi-image {
+
+    width: 100%;
+
+    height: 280px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #e9e4d7;
+}
+
+.prestasi-content {
+
+    padding: 25px;
+}
+
+.prestasi-content small {
+
+    color: #b08a45;
+
+    font-weight: 700;
+}
+
+.prestasi-content h3 {
+
+    margin:
+        8px 0 10px;
+
+    font-size: 19px;
+}
+
+.prestasi-content p {
+
+    color: #66766f;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   BENEFIT
+========================================= */
+
+.benefit-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 20px;
+}
+
+.benefit-card {
+
+    padding: 30px 25px;
+
+    border-radius: 22px;
+
+    background: white;
+
+    border:
+        1px solid
+        rgba(18,55,42,.08);
+
+    transition: .3s;
+}
+
+.benefit-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(18,55,42,.07);
+}
+
+.benefit-icon {
+
+    width: 50px;
+    height: 50px;
 
     border-radius: 15px;
 
-    overflow: hidden;
+    background: #12372a;
 
-    box-shadow:
-        0 35px 80px
-        rgba(0,0,0,.4);
-
-    color: #12372a;
-
-}
-
-.browser-top {
-
-    height: 35px;
-
-    background: #e7e3d9;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    padding: 0 13px;
-
-}
-
-.browser-dot {
-
-    width: 7px;
-
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #999;
-
-}
-
-.browser-content {
-
-    height: calc(100% - 35px);
+    color: white;
 
     display: flex;
 
@@ -746,318 +861,332 @@ section {
 
     justify-content: center;
 
-    text-align: center;
+    font-size: 22px;
 
-    padding: 30px;
-
+    margin-bottom: 20px;
 }
 
-.browser-content-inner {
+.benefit-card h3 {
 
-    max-width: 420px;
+    font-size: 17px;
 
+    margin-bottom: 10px;
 }
 
-.browser-content small {
+.benefit-card p {
 
-    color: #b08a45;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-}
-
-.browser-content h3 {
-
-    font-size:
-        clamp(28px, 5vw, 50px);
-
-    line-height: 1;
-
-    margin:
-        15px 0;
-
-    letter-spacing: -2px;
-
-}
-
-.browser-content p {
-
-    color: #64756d;
-
-    font-size: 11px;
-
-    line-height: 1.7;
-
-}
-
-
-/* =====================================
-   PROJECT INFO
-===================================== */
-
-.project-info {
-
-    padding: 35px;
-
-}
-
-.project-top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    gap: 30px;
-
-}
-
-.project-name {
-
-    font-size: 27px;
-
-    letter-spacing: -1px;
-
-}
-
-.project-type {
-
-    margin-top: 7px;
-
-    color: var(--muted);
-
-    font-size: 12px;
-
-}
-
-.project-description {
-
-    max-width: 650px;
-
-    color: #888;
+    color: #6b7b74;
 
     font-size: 13px;
 
-    line-height: 1.8;
-
-    margin:
-        25px 0;
-
+    line-height: 1.7;
 }
 
-.project-tags {
+
+/* =========================================
+   TESTIMONIAL
+========================================= */
+
+.testimonial-section {
+
+    background: #f7f3e8;
+}
+
+.testimonial-wrapper {
+
+    max-width: 850px;
+
+    margin: auto;
 
     display: flex;
 
-    flex-wrap: wrap;
+    align-items: center;
 
-    gap: 8px;
+    gap: 20px;
+}
+
+.testimonial-slider {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.testimonial {
+
+    display: none;
+
+    background: white;
+
+    border-radius: 30px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(18,55,42,.08);
+
+    animation:
+        fadeTestimonial .5s ease;
+}
+
+.testimonial.active {
+
+    display: block;
+}
+
+@keyframes fadeTestimonial {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.quote {
+
+    font-size: 65px;
+
+    line-height: .5;
+
+    color: #c9a45c;
 
     margin-bottom: 25px;
-
 }
 
-.project-tag {
+.testimonial p {
 
-    padding:
-        7px 11px;
+    color: #53645c;
 
-    border-radius: 50px;
+    line-height: 1.9;
 
-    background: #1a1a1a;
-
-    color: #999;
-
-    font-size: 10px;
-
+    font-size: 15px;
 }
 
-.project-link {
+.member {
 
-    display: inline-flex;
+    display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 12px;
 
-    color: var(--accent);
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    transition: .3s;
-
+    margin-top: 30px;
 }
 
-.project-link:hover {
+.avatar {
 
-    gap: 15px;
+    width: 45px;
+    height: 45px;
 
-}
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
 
-/* =====================================
-   PROCESS
-===================================== */
+    border-radius: 50%;
 
-.process-grid {
+    background: #12372a;
 
-    margin-top: 55px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap: 15px;
-
-}
-
-.process-card {
-
-    padding: 30px;
-
-    border:
-        1px solid var(--line);
-
-    border-radius: 20px;
-
-    background: var(--card);
-
-}
-
-.process-number {
-
-    color: var(--accent);
-
-    font-size: 11px;
+    color: white;
 
     font-weight: 800;
-
-    margin-bottom: 45px;
-
 }
 
-.process-card h3 {
+.member strong {
+
+    display: block;
+
+    font-size: 14px;
+}
+
+.member small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #8a9992;
+
+    font-size: 11px;
+}
+
+.slider-btn {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        rgba(18,55,42,.15);
+
+    background: white;
+
+    border-radius: 50%;
+
+    cursor: pointer;
 
     font-size: 18px;
 
-    margin-bottom: 10px;
-
+    transition: .3s;
 }
 
-.process-card p {
+.slider-btn:hover {
 
-    color: #777;
+    background: #12372a;
 
-    font-size: 12px;
-
-    line-height: 1.7;
-
+    color: white;
 }
 
 
-/* =====================================
+/* =========================================
    CTA
-===================================== */
+========================================= */
 
 .cta-section {
 
-    padding-top: 80px;
-
+    padding:
+        80px 7%;
 }
 
 .cta {
 
+    max-width: 1100px;
+
+    margin: auto;
+
+    background: #12372a;
+
+    color: white;
+
+    border-radius: 35px;
+
     padding:
-        90px 40px;
-
-    border-radius: 30px;
-
-    background: var(--accent);
-
-    color: #090909;
+        70px 40px;
 
     text-align: center;
 
     position: relative;
 
     overflow: hidden;
+}
 
+.cta::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 50%;
+
+    top: -180px;
+    right: -100px;
+}
+
+.cta::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border:
+        1px solid
+        rgba(201,164,92,.2);
+
+    border-radius: 50%;
+
+    bottom: -150px;
+    left: -50px;
+}
+
+.cta-content {
+
+    position: relative;
+
+    z-index: 2;
 }
 
 .cta h2 {
 
     font-size:
-        clamp(35px, 6vw, 65px);
+        clamp(30px,4vw,50px);
 
-    line-height: 1;
-
-    letter-spacing: -3px;
-
-    margin-bottom: 20px;
-
+    margin-bottom: 18px;
 }
 
 .cta p {
 
-    max-width: 500px;
+    max-width: 600px;
 
     margin:
         0 auto 30px;
 
-    color: #34400e;
+    color:
+        rgba(255,255,255,.7);
 
-    font-size: 13px;
-
-    line-height: 1.7;
-
+    line-height: 1.8;
 }
 
-.cta-button {
+.cta-btn {
 
     display: inline-flex;
 
     padding:
-        15px 24px;
+        16px 28px;
 
-    background: #090909;
+    background: #c9a45c;
 
-    color: white;
+    color: #12372a;
 
     border-radius: 50px;
 
-    font-size: 12px;
-
-    font-weight: 700;
+    font-weight: 800;
 
     transition: .3s;
-
 }
 
-.cta-button:hover {
+.cta-btn:hover {
 
     transform:
         translateY(-4px);
-
 }
 
 
-/* =====================================
+/* =========================================
    FOOTER
-===================================== */
+========================================= */
 
 footer {
 
-    padding:
-        45px 6%;
+    background: #0b241b;
 
+    color: white;
+
+    padding:
+        60px 7% 25px;
 }
 
 .footer-container {
@@ -1070,53 +1199,83 @@ footer {
 
     justify-content: space-between;
 
-    align-items: center;
+    gap: 40px;
 
-    gap: 20px;
-
-    border-top:
-        1px solid var(--line);
-
-    padding-top: 25px;
-
+    padding-bottom: 40px;
 }
 
-.footer-container p {
+.footer-brand {
 
-    color: #555;
-
-    font-size: 10px;
-
+    max-width: 400px;
 }
 
-.social {
+.footer-brand h3 {
+
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.footer-links {
 
     display: flex;
 
-    gap: 15px;
+    gap: 25px;
 
+    align-items: center;
+
+    flex-wrap: wrap;
 }
 
-.social a {
+.footer-links a {
 
-    color: #777;
+    color:
+        rgba(255,255,255,.65);
 
-    font-size: 11px;
+    font-size: 13px;
 
     transition: .3s;
-
 }
 
-.social a:hover {
+.footer-links a:hover {
 
     color: white;
+}
 
+.copyright {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    color:
+        rgba(255,255,255,.4);
+
+    font-size: 12px;
+
+    text-align: center;
 }
 
 
-/* =====================================
-   REVEAL
-===================================== */
+/* =========================================
+   REVEAL ANIMATION
+========================================= */
 
 .reveal {
 
@@ -1127,7 +1286,6 @@ footer {
 
     transition:
         .8s ease;
-
 }
 
 .reveal.active {
@@ -1136,552 +1294,498 @@ footer {
 
     transform:
         translateY(0);
-
 }
 
 
-/* =====================================
+/* =========================================
+   FLOATING CTA
+========================================= */
+
+.floating-cta {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: #12372a;
+
+    color: white;
+
+    padding:
+        12px 18px 12px 12px;
+
+    border-radius: 50px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.2);
+
+    z-index: 800;
+
+    transition: .3s;
+}
+
+.floating-cta:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+.floating-icon {
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #c9a45c;
+
+    color: #12372a;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+}
+
+.floating-text {
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+.back-top {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 90px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #12372a;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.15);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 700;
+}
+
+.back-top.show {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media(max-width:900px) {
+
+    .hero-container {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .hero p {
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+
+        justify-content: center;
+    }
+
+    .hero-visual {
+
+        order: -1;
+    }
+
+    .hero-card {
+
+        max-width: 350px;
+    }
+
+    .prestasi-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .benefit-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .footer-container {
+
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================
    MOBILE
-===================================== */
+========================================= */
 
-@media(max-width:800px) {
-    
-   .navbar-logo {
-    width: 82px;
-    height: 36px;
-}
+@media(max-width:600px) {
 
-.navbar-logo img {
-    width: 82px !important;
-    height: 36px !important;
+    .navbar {
 
-    max-width: 82px !important;
-    max-height: 36px !important;
-}
+        padding:
+            15px 5%;
+    }
 
-.nav-links {
-    display: none;
-}
+    .logo {
+
+        font-size: 16px;
+    }
+
+    .logo img {
+
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-btn {
+
+        padding:
+            10px 15px;
+
+        font-size: 12px;
+    }
 
     .hero {
 
         padding:
-            140px 5% 70px;
-
+            115px 5% 70px;
     }
 
     .hero h1 {
 
-        font-size: 52px;
+        font-size: 43px;
 
-        letter-spacing: -3px;
-
+        letter-spacing: -2px;
     }
 
-    .hero-bottom {
+    .hero p {
 
-        margin-top: 70px;
-
+        font-size: 15px;
     }
 
     section {
 
         padding:
             80px 5%;
-
     }
 
-    .about-grid {
+    .stats-container {
 
-        grid-template-columns: 1fr;
-
-        gap: 35px;
-
+        grid-template-columns:
+            1fr 1fr;
     }
 
-    .project-header {
+    .stat {
 
-        align-items: flex-start;
+        border-right: none;
 
-        flex-direction: column;
-
+        border-bottom:
+            1px solid
+            rgba(255,255,255,.1);
     }
 
-    .project-preview {
+    .stat h2 {
 
-        min-height: 350px;
-
+        font-size: 32px;
     }
 
-    .browser {
+    .prestasi-grid {
 
-        inset:
-            25px 15px;
-
+        grid-template-columns:
+            1fr;
     }
 
-    .process-grid {
+    .benefit-grid {
 
-        grid-template-columns: 1fr;
-
+        grid-template-columns:
+            1fr;
     }
 
-    .project-top {
+    .prestasi-image {
 
-        flex-direction: column;
-
+        height: 250px;
     }
 
-    .project-info {
+    .testimonial-wrapper {
 
-        padding: 25px;
-
+        gap: 8px;
     }
 
-    .footer-container {
+    .testimonial {
 
-        flex-direction: column;
-
-        align-items: flex-start;
-
+        padding:
+            30px 25px;
     }
 
+    .slider-btn {
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .cta {
+
+        border-radius: 25px;
+
+        padding:
+            55px 25px;
+    }
+
+    .floating-cta {
+
+        right: 15px;
+        bottom: 15px;
+
+        width: 52px;
+        height: 52px;
+
+        padding: 8px;
+
+        justify-content: center;
+    }
+
+    .floating-text {
+
+        display: none;
+    }
+
+    .floating-icon {
+
+        width: 36px;
+        height: 36px;
+    }
+
+    .back-top {
+
+        right: 15px;
+
+        bottom: 80px;
+    }
 }
 
 </style>
 </head>
 
 
-<body>
+<body class="lock">
 
 
-<!-- =====================================
+<!-- =========================================
+     SCROLL PROGRESS
+========================================= -->
+
+<div class="scroll-progress"></div>
+
+
+<!-- =========================================
+     PRELOADER
+========================================= -->
+
+<div class="preloader" id="preloader">
+
+    <div class="loader-content">
+
+        <img
+            src="logo-murajaahnesia.png"
+            alt="Murajaahnesia"
+            onerror="this.style.display='none'"
+        >
+
+        <div class="loader-line"></div>
+
+        <p>
+            Menyiapkan perjalananmu...
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
      NAVBAR
-===================================== -->
+========================================= -->
 
-<nav class="navbar" id="navbar">
+<header class="navbar" id="navbar">
 
     <div class="nav-container">
 
-        <!-- LOGO AH.dev -->
-      <a href="#" class="navbar-logo">
-    AH<span>.dev</span>
-</a>
+        <a href="#" class="logo">
 
-        <!-- NAVIGATION -->
-        <div class="nav-links">
+            <img
+                src="logo-murajaahnesia.png"
+                alt="Logo Murajaahnesia"
+                onerror="this.style.display='none'"
+            >
 
-            <a href="#about">
-                About
-            </a>
+            <span>
+                Murajaahnesia
+            </span>
 
-            <a href="#projects">
-                Projects
-            </a>
-
-            <a href="#process">
-                Process
-            </a>
-
-        </div>
+        </a>
 
 
-        <!-- CTA -->
         <a
-            href="#contact"
-            class="nav-cta"
+            href="#daftar"
+            class="nav-btn"
         >
-            Let's Work
+            Daftar Sekarang
         </a>
 
     </div>
 
-</nav>
+</header>
 
-<!-- =====================================
+
+<main>
+
+
+<!-- =========================================
      HERO
-===================================== -->
+========================================= -->
 
 <section class="hero">
 
     <div class="hero-container">
 
 
-        <div class="eyebrow reveal">
+        <div class="hero-content reveal">
 
-            AVAILABLE FOR PROJECTS
-
-        </div>
-
-
-        <h1 class="reveal">
-
-            I build websites
-
-            <br>
-
-            that look
-
-            <span>
-                different.
-            </span>
-
-        </h1>
-
-
-        <p class="hero-description reveal">
-
-            Kami membuat website modern,
-            responsive, dan berorientasi pada
-            pengalaman pengguna untuk bisnis,
-            komunitas, dan personal brand.
-
-        </p>
-
-
-        <div class="hero-buttons reveal">
-
-            <a
-                href="#projects"
-                class="primary-btn"
-            >
-                Lihat Project →
-            </a>
-
-
-            <a
-                href="#contact"
-                class="secondary-btn"
-            >
-                Hubungi Saya
-            </a>
-
-        </div>
-
-
-        <div class="hero-bottom reveal">
-
-            <p>
-                Web Developer & Designer
-            </p>
-
-
-            <div class="scroll-text">
-
-                Scroll to explore
-
-                <span class="scroll-line"></span>
-
+            <div class="badge">
+                ✦ Kelas Murajaah Online
             </div>
 
-        </div>
 
+            <h1>
 
-    </div>
-
-</section>
-
-
-<!-- =====================================
-     ABOUT
-===================================== -->
-
-<section id="about">
-
-    <div class="section-container">
-
-
-        <div class="section-label reveal">
-
-            ABOUT ME
-
-        </div>
-
-
-        <h2 class="section-title reveal">
-
-            Dari ide sederhana
-
-            <br>
-
-            menjadi website nyata.
-
-        </h2>
-
-
-        <div class="about-grid">
-
-
-            <div class="about-text reveal">
-
-                <p>
-
-                    Kami
-
-                    <strong>
-                        Web Developer
-                    </strong>
-
-                    yang berfokus pada pembuatan
-                    website dengan tampilan modern,
-                    clean, responsive, dan nyaman
-                    digunakan.
-
-                </p>
+                Jaga Hafalan.
 
                 <br>
 
-                <p>
+                <span>
+                    Kuatkan Murajaah.
+                </span>
 
-                    Kami percaya sebuah website
-                    bukan hanya harus terlihat bagus,
-                    tetapi juga harus mampu
-                    menyampaikan identitas dan
-                    tujuan sebuah brand.
+            </h1>
 
-                </p>
 
-            </div>
+            <p>
 
+                Temukan cara untuk menjaga
+                hafalan Al-Qur'an agar tetap
+                kuat, terarah, dan konsisten
+                bersama komunitas Murajaahnesia.
 
-            <div class="skills reveal">
+            </p>
 
-                <div class="skill">
-                    HTML
-                </div>
 
-                <div class="skill">
-                    CSS
-                </div>
-
-                <div class="skill">
-                    JavaScript
-                </div>
-
-                <div class="skill">
-                    Responsive Design
-                </div>
-
-                <div class="skill">
-                    UI Design
-                </div>
-
-                <div class="skill">
-                    Landing Page
-                </div>
-
-                <div class="skill">
-                    Website Development
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================
-     PROJECT
-===================================== -->
-
-<section
-    class="project-section"
-    id="projects"
->
-
-    <div class="section-container">
-
-
-        <div class="project-header">
-
-
-            <div>
-
-                <div class="section-label reveal">
-
-                    SELECTED PROJECT
-
-                </div>
-
-
-                <h2 class="section-title reveal">
-
-                    Work I've done.
-
-                </h2>
-
-            </div>
-
-
-            <div class="project-number reveal">
-
-                01 / 01
-
-            </div>
-
-
-        </div>
-
-
-        <!-- PROJECT CARD -->
-
-        <div class="project-card reveal">
-
-
-            <!-- WEBSITE PREVIEW -->
-
-            <div class="project-preview">
-
-
-                <div class="browser">
-
-
-                    <div class="browser-top">
-
-                        <span class="browser-dot"></span>
-
-                        <span class="browser-dot"></span>
-
-                        <span class="browser-dot"></span>
-
-                    </div>
-
-
-                    <div class="browser-content">
-
-
-                        <div class="browser-content-inner">
-
-                            <small>
-                                KELAS MURAJAAH ONLINE
-                            </small>
-
-
-                            <h3>
-                                Murajaahnesia
-                            </h3>
-
-
-                            <p>
-
-                                Jaga Hafalan.
-                                Kuatkan Murajaah.
-
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- PROJECT INFORMATION -->
-
-            <div class="project-info">
-
-
-                <div class="project-top">
-
-
-                    <div>
-
-                        <h3 class="project-name">
-
-                            Murajaahnesia
-
-                        </h3>
-
-
-                        <p class="project-type">
-
-                            Website Kelas Murajaah Online
-
-                        </p>
-
-                    </div>
-
-
-                    <div class="project-number">
-
-                        2026
-
-                    </div>
-
-
-                </div>
-
-
-                <p class="project-description">
-
-                    Website landing page premium untuk
-                    Murajaahnesia, sebuah kelas murajaah
-                    online. Website dirancang untuk
-                    memperkenalkan brand, menampilkan
-                    pencapaian member, membangun
-                    kepercayaan calon peserta, dan
-                    mengarahkan pengunjung menuju
-                    pendaftaran.
-
-                </p>
-
-
-                <div class="project-tags">
-
-                    <span class="project-tag">
-                        HTML
-                    </span>
-
-                    <span class="project-tag">
-                        CSS
-                    </span>
-
-                    <span class="project-tag">
-                        JavaScript
-                    </span>
-
-                    <span class="project-tag">
-                        Responsive
-                    </span>
-
-                    <span class="project-tag">
-                        UI Design
-                    </span>
-
-                    <span class="project-tag">
-                        Landing Page
-                    </span>
-
-                </div>
-
-
-                <!-- GANTI LINK INI
-                     DENGAN LINK WEBSITE MURAJAAHNESIA -->
+            <div class="hero-buttons">
 
                 <a
-                    href="https://syauqinf-cyber.github.io/murajaahnesia/"
-                    class="project-link"
+                    href="#daftar"
+                    class="primary-btn"
                 >
-
-                    View Project
-
-                    <span>
-                        →
-                    </span>
-
+                    Mulai Bersama Kami →
                 </a>
 
 
+                <a
+                    href="#prestasi"
+                    class="secondary-btn"
+                >
+                    Lihat Prestasi Member
+                </a>
+
             </div>
 
+        </div>
+
+
+        <div
+            class="hero-visual reveal"
+            id="heroVisual"
+        >
+
+            <div class="hero-card">
+
+                <div class="hero-card-inner">
+
+                    <img
+                        src="logo-murajaahnesia.png"
+                        class="hero-logo"
+                        alt="Murajaahnesia"
+                        onerror="this.style.display='none'"
+                    >
+
+
+                    <h2>
+                        Murajaahnesia
+                    </h2>
+
+
+                    <p>
+
+                        Bersama menjaga hafalan,
+                        membangun konsistensi,
+                        dan terus bertumbuh.
+
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -1690,240 +1794,838 @@ footer {
 </section>
 
 
-<!-- =====================================
-     PROCESS
-===================================== -->
+<!-- =========================================
+     STATISTICS
+     GANTI DENGAN DATA ASLI KLIEN
+========================================= -->
 
-<section id="process">
+<section class="stats-section">
 
-    <div class="section-container">
+    <div class="stats-container">
 
 
-        <div class="section-label reveal">
+        <div class="stat reveal">
 
-            MY PROCESS
+            <h2>
+                <span
+                    class="counter"
+                    data-target="500"
+                >
+                    0
+                </span>+
+            </h2>
+
+            <p>
+                Member
+            </p>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+            <h2>
+                <span
+                    class="counter"
+                    data-target="10000"
+                >
+                    0
+                </span>+
+            </h2>
+
+            <p>
+                Murajaah
+            </p>
 
         </div>
 
 
-        <h2 class="section-title reveal">
+        <div class="stat reveal">
 
-            Simple process.
+            <h2>
 
-            <br>
+                <span
+                    class="counter"
+                    data-target="100"
+                >
+                    0
+                </span>%
 
-            Serious result.
+            </h2>
 
-        </h2>
-
-
-        <div class="process-grid">
-
-
-            <div class="process-card reveal">
-
-                <div class="process-number">
-                    01
-                </div>
-
-
-                <h3>
-                    Understand
-                </h3>
-
-
-                <p>
-
-                    Memahami kebutuhan,
-                    tujuan, audience, dan
-                    identitas brand sebelum
-                    website dibuat.
-
-                </p>
-
-            </div>
-
-
-            <div class="process-card reveal">
-
-                <div class="process-number">
-                    02
-                </div>
-
-
-                <h3>
-                    Design & Build
-                </h3>
-
-
-                <p>
-
-                    Mengubah konsep menjadi
-                    desain dan website yang
-                    responsive serta nyaman
-                    digunakan.
-
-                </p>
-
-            </div>
-
-
-            <div class="process-card reveal">
-
-                <div class="process-number">
-                    03
-                </div>
-
-
-                <h3>
-                    Launch
-                </h3>
-
-
-                <p>
-
-                    Melakukan final check,
-                    optimasi tampilan,
-                    kemudian website siap
-                    digunakan.
-
-                </p>
-
-            </div>
-
+            <p>
+                Komitmen
+            </p>
 
         </div>
+
+
+        <div class="stat reveal">
+
+            <h2>
+
+                <span
+                    class="counter"
+                    data-target="3"
+                >
+                    0
+                </span>+
+
+            </h2>
+
+            <p>
+                Tahun Bertumbuh
+            </p>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- =====================================
-     CTA
-===================================== -->
+<!-- =========================================
+     PRESTASI MEMBER
+========================================= -->
 
 <section
-    class="cta-section"
-    id="contact"
+    class="prestasi"
+    id="prestasi"
 >
 
     <div class="section-container">
 
 
-        <div class="cta reveal">
+        <div class="section-heading reveal">
+
+            <span>
+                Member Kami
+            </span>
 
 
             <h2>
 
-                Have a project?
+                Perjalanan Mereka,
 
                 <br>
 
-                Let's build it.
+                Bukti Nyata Konsistensi
 
             </h2>
 
 
             <p>
 
-                Punya ide website atau ingin
-                membuat bisnis terlihat lebih
-                profesional di internet?
-
-                Mari ngobrol dan wujudkan
-                idenya.
+                Setiap pencapaian dimulai
+                dari langkah kecil yang
+                dilakukan secara konsisten.
 
             </p>
 
+        </div>
 
-            <!-- GANTI NOMOR WHATSAPP LU -->
 
-            <a
-                href="https://wa.me/6289518691025?text=Halo%2C%20saya%20tertarik%20untuk%20membuat%20website."
-                target="_blank"
-                rel="noopener"
-                class="cta-button"
+        <div class="prestasi-grid">
+
+
+            <!-- MEMBER 1 -->
+
+            <article
+                class="prestasi-card reveal"
             >
 
-                Start a Conversation →
+                <img
+                    src="member-1.jpg"
+                    alt="Prestasi Member Murajaahnesia"
+                    class="prestasi-image"
+                    onerror="this.style.display='none'"
+                >
 
-            </a>
+
+                <div class="prestasi-content">
+
+                    <small>
+                        MEMBER MURAJAAHNESIA
+                    </small>
+
+
+                    <h3>
+                        Ahmad Fulan
+                    </h3>
+
+
+                    <p>
+
+                        Berhasil menjaga
+                        konsistensi murajaah
+                        selama 100 hari bersama
+                        Murajaahnesia.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- MEMBER 2 -->
+
+            <article
+                class="prestasi-card reveal"
+            >
+
+                <img
+                    src="member-2.jpg"
+                    alt="Prestasi Member Murajaahnesia"
+                    class="prestasi-image"
+                    onerror="this.style.display='none'"
+                >
+
+
+                <div class="prestasi-content">
+
+                    <small>
+                        MEMBER MURAJAAHNESIA
+                    </small>
+
+
+                    <h3>
+                        Muhammad Fulan
+                    </h3>
+
+
+                    <p>
+
+                        Berhasil menyelesaikan
+                        target murajaah dan
+                        menjaga hafalan secara
+                        konsisten.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- MEMBER 3 -->
+
+            <article
+                class="prestasi-card reveal"
+            >
+
+                <img
+                    src="member-3.jpg"
+                    alt="Prestasi Member Murajaahnesia"
+                    class="prestasi-image"
+                    onerror="this.style.display='none'"
+                >
+
+
+                <div class="prestasi-content">
+
+                    <small>
+                        MEMBER MURAJAAHNESIA
+                    </small>
+
+
+                    <h3>
+                        Fulanah
+                    </h3>
+
+
+                    <p>
+
+                        Berhasil mempertahankan
+                        rutinitas murajaah dan
+                        terus berkembang bersama
+                        komunitas.
+
+                    </p>
+
+                </div>
+
+            </article>
 
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================
+<!-- =========================================
+     BENEFIT
+========================================= -->
+
+<section>
+
+    <div class="section-container">
+
+
+        <div class="section-heading reveal">
+
+            <span>
+                Kenapa Murajaahnesia?
+            </span>
+
+
+            <h2>
+
+                Bukan Sekadar Menghafal,
+
+                <br>
+
+                Tapi Menjaga Hafalan
+
+            </h2>
+
+        </div>
+
+
+        <div class="benefit-grid">
+
+
+            <div class="benefit-card reveal">
+
+                <div class="benefit-icon">
+                    📖
+                </div>
+
+                <h3>
+                    Murajaah Terarah
+                </h3>
+
+                <p>
+
+                    Membantu membangun pola
+                    murajaah yang lebih teratur
+                    dan terarah.
+
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card reveal">
+
+                <div class="benefit-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Target yang Jelas
+                </h3>
+
+                <p>
+
+                    Membantu menjaga fokus
+                    dan konsistensi dalam
+                    mencapai target.
+
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card reveal">
+
+                <div class="benefit-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Komunitas
+                </h3>
+
+                <p>
+
+                    Bertumbuh bersama
+                    orang-orang yang memiliki
+                    tujuan yang sama.
+
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card reveal">
+
+                <div class="benefit-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Istiqamah
+                </h3>
+
+                <p>
+
+                    Membentuk kebiasaan agar
+                    murajaah menjadi bagian
+                    dari rutinitas.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     TESTIMONIAL
+========================================= -->
+
+<section class="testimonial-section">
+
+    <div class="section-container">
+
+
+        <div class="section-heading reveal">
+
+            <span>
+                Cerita Mereka
+            </span>
+
+
+            <h2>
+
+                Bukan Hanya Tentang Hafalan,
+
+                <br>
+
+                Tapi Tentang Perjalanan
+
+            </h2>
+
+
+            <p>
+
+                Dengarkan pengalaman mereka
+                yang bertumbuh bersama
+                Murajaahnesia.
+
+            </p>
+
+        </div>
+
+
+        <div class="testimonial-wrapper">
+
+
+            <button
+                class="slider-btn prev"
+                type="button"
+            >
+                ←
+            </button>
+
+
+            <div class="testimonial-slider">
+
+
+                <div class="testimonial active">
+
+                    <div class="quote">
+                        “
+                    </div>
+
+
+                    <p>
+
+                        Murajaahnesia membuat
+                        saya lebih konsisten menjaga
+                        hafalan. Dulu sering menunda,
+                        sekarang punya rutinitas yang
+                        jauh lebih terarah.
+
+                    </p>
+
+
+                    <div class="member">
+
+                        <div class="avatar">
+                            A
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Ahmad
+                            </strong>
+
+                            <small>
+                                Member Murajaahnesia
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial">
+
+                    <div class="quote">
+                        “
+                    </div>
+
+
+                    <p>
+
+                        Yang paling saya rasakan
+                        bukan hanya bertambahnya
+                        konsistensi, tapi juga adanya
+                        lingkungan yang saling
+                        menguatkan.
+
+                    </p>
+
+
+                    <div class="member">
+
+                        <div class="avatar">
+                            F
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Fulanah
+                            </strong>
+
+                            <small>
+                                Member Murajaahnesia
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="testimonial">
+
+                    <div class="quote">
+                        “
+                    </div>
+
+
+                    <p>
+
+                        Saya jadi lebih punya
+                        target dan merasa tidak
+                        sendirian dalam menjaga
+                        hafalan.
+
+                    </p>
+
+
+                    <div class="member">
+
+                        <div class="avatar">
+                            M
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Muhammad
+                            </strong>
+
+                            <small>
+                                Member Murajaahnesia
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="slider-btn next"
+                type="button"
+            >
+                →
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA PENDAFTARAN
+========================================= -->
+
+<section
+    class="cta-section"
+    id="daftar"
+>
+
+    <div class="cta reveal">
+
+
+        <div class="cta-content">
+
+
+            <h2>
+                Siap Menjaga Hafalanmu?
+            </h2>
+
+
+            <p>
+
+                Jangan biarkan hafalan
+                yang sudah kamu perjuangkan
+                berhenti di tengah jalan.
+
+                Mari terus murajaah,
+                terus bertumbuh, dan terus
+                istiqamah bersama Murajaahnesia.
+
+            </p>
+
+
+            <!--
+                GANTI LINK INI
+                DENGAN LINK PENDAFTARAN ASLI
+            -->
+
+            <a
+                href="https://murojaahnesia.github.io/daftar-murojaahnesia/"
+                target="_blank"
+                rel="noopener"
+                class="cta-btn"
+            >
+
+                DAFTAR MURAJAAHNESIA →
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================
+     FLOATING CTA
+========================================= -->
+
+<a
+    href="https://murojaahnesia.github.io/daftar-murojaahnesia/"
+    target="_blank"
+    rel="noopener"
+    class="floating-cta"
+>
+
+    <span class="floating-icon">
+        ✦
+    </span>
+
+
+    <span class="floating-text">
+        Daftar Murajaahnesia
+    </span>
+
+</a>
+
+
+<!-- =========================================
+     BACK TO TOP
+========================================= -->
+
+<button
+    class="back-top"
+    id="backTop"
+    type="button"
+>
+
+    ↑
+
+</button>
+
+
+<!-- =========================================
      FOOTER
-===================================== -->
+========================================= -->
 
 <footer>
 
     <div class="footer-container">
 
 
-        <p>
+        <div class="footer-brand">
 
-            © 2026 Ahmad.
-            Built with intention.
+            <h3>
+                Murajaahnesia
+            </h3>
 
-        </p>
+
+            <p>
+
+                Ruang belajar dan bertumbuh
+                untuk menjaga hafalan Al-Qur'an
+                melalui murajaah yang konsisten.
+
+            </p>
+
+        </div>
 
 
-        <div class="social">
+        <div class="footer-links">
 
-            <!-- GANTI INSTAGRAM LU -->
+            <a href="#prestasi">
+                Prestasi Member
+            </a>
 
-            <a
-                href="https://instagram.com/"
-                target="_blank"
-            >
+            <a href="#daftar">
+                Pendaftaran
+            </a>
+
+            <a href="https://www.instagram.com/murojaahnesia?igsi=MmRpZHNsaDZwY2c2&utm_source=qr">
                 Instagram
-            </a>
-
-
-            <a href="#projects">
-                Projects
-            </a>
-
-
-            <a href="#contact">
-                Contact
             </a>
 
         </div>
 
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Murajaahnesia.
+        All rights reserved.
 
     </div>
 
 </footer>
 
 
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
-
 <script>
 
-/* ===============================
-   NAVBAR
-================================ */
+/* =========================================
+   PRELOADER
+   TIDAK MENGGUNAKAN window.load
+========================================= */
+
+const preloader =
+    document.getElementById("preloader");
+
+
+function finishLoading() {
+
+    if (!preloader) return;
+
+    preloader.classList.add("hide");
+
+    document.body.classList.remove("lock");
+}
+
+
+/*
+   Hilangkan setelah 900ms.
+*/
+
+setTimeout(
+    finishLoading,
+    900
+);
+
+
+/*
+   Fallback.
+   Kalau ada sesuatu yang error,
+   loader tetap akan hilang.
+*/
+
+setTimeout(
+    finishLoading,
+    2500
+);
+
+
+/* =========================================
+   ELEMENT
+========================================= */
 
 const navbar =
     document.getElementById("navbar");
 
+const backTop =
+    document.getElementById("backTop");
+
+const progress =
+    document.querySelector(".scroll-progress");
+
+const heroVisual =
+    document.getElementById("heroVisual");
+
+
+/* =========================================
+   SCROLL
+========================================= */
 
 window.addEventListener(
     "scroll",
     () => {
 
-        if (window.scrollY > 40) {
+        const scrollTop =
+            window.scrollY;
+
+
+        const maxScroll =
+            document.documentElement
+            .scrollHeight
+            -
+            window.innerHeight;
+
+
+        const percentage =
+            maxScroll > 0
+                ? (scrollTop / maxScroll) * 100
+                : 0;
+
+
+        /*
+           Progress bar
+        */
+
+        progress.style.width =
+            percentage + "%";
+
+
+        /*
+           Navbar
+        */
+
+        if (scrollTop > 30) {
 
             navbar.classList.add(
                 "scrolled"
@@ -1937,6 +2639,45 @@ window.addEventListener(
 
         }
 
+
+        /*
+           Back to top
+        */
+
+        if (scrollTop > 500) {
+
+            backTop.classList.add(
+                "show"
+            );
+
+        } else {
+
+            backTop.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /*
+           Hero parallax
+        */
+
+        if (
+            window.innerWidth > 900 &&
+            heroVisual
+        ) {
+
+            const movement =
+                Math.min(
+                    scrollTop * 0.06,
+                    35
+                );
+
+            heroVisual.style.transform =
+                `translateY(${movement}px)`;
+        }
+
     },
     {
         passive: true
@@ -1944,9 +2685,29 @@ window.addEventListener(
 );
 
 
-/* ===============================
-   REVEAL
-================================ */
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+backTop.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================
+   REVEAL ANIMATION
+========================================= */
 
 const revealElements =
     document.querySelectorAll(
@@ -1954,10 +2715,10 @@ const revealElements =
     );
 
 
-const observer =
+const revealObserver =
     new IntersectionObserver(
 
-        entries => {
+        (entries, observer) => {
 
             entries.forEach(
                 entry => {
@@ -1969,6 +2730,7 @@ const observer =
                         entry.target
                             .classList
                             .add("active");
+
 
                         observer.unobserve(
                             entry.target
@@ -1991,11 +2753,273 @@ const observer =
 revealElements.forEach(
     element => {
 
-        observer.observe(
+        revealObserver.observe(
             element
         );
 
     }
+);
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+const counters =
+    document.querySelectorAll(
+        ".counter"
+    );
+
+
+const statsSection =
+    document.querySelector(
+        ".stats-section"
+    );
+
+
+let counterStarted = false;
+
+
+function startCounters() {
+
+    if (counterStarted) return;
+
+    counterStarted = true;
+
+
+    counters.forEach(
+        counter => {
+
+            const target =
+                Number(
+                    counter.dataset.target
+                );
+
+
+            const duration = 1400;
+
+            const start =
+                performance.now();
+
+
+            function updateCounter(
+                currentTime
+            ) {
+
+                const progress =
+                    Math.min(
+                        (
+                            currentTime -
+                            start
+                        ) /
+                        duration,
+                        1
+                    );
+
+
+                /*
+                   Ease-out
+                */
+
+                const eased =
+                    1 -
+                    Math.pow(
+                        1 - progress,
+                        3
+                    );
+
+
+                const value =
+                    Math.floor(
+                        target * eased
+                    );
+
+
+                counter.textContent =
+                    value.toLocaleString(
+                        "id-ID"
+                    );
+
+
+                if (
+                    progress < 1
+                ) {
+
+                    requestAnimationFrame(
+                        updateCounter
+                    );
+
+                } else {
+
+                    counter.textContent =
+                        target.toLocaleString(
+                            "id-ID"
+                        );
+
+                }
+
+            }
+
+
+            requestAnimationFrame(
+                updateCounter
+            );
+
+        }
+    );
+}
+
+
+const statsObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            if (
+                entries[0]
+                .isIntersecting
+            ) {
+
+                startCounters();
+
+                statsObserver.disconnect();
+
+            }
+
+        },
+
+        {
+            threshold: .35
+        }
+
+    );
+
+
+if (statsSection) {
+
+    statsObserver.observe(
+        statsSection
+    );
+
+}
+
+
+/* =========================================
+   TESTIMONIAL SLIDER
+========================================= */
+
+const testimonials =
+    [
+        ...document.querySelectorAll(
+            ".testimonial"
+        )
+    ];
+
+
+let currentSlide = 0;
+
+
+function showSlide(index) {
+
+    testimonials.forEach(
+        item => {
+
+            item.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    testimonials[index]
+        .classList
+        .add("active");
+}
+
+
+/*
+   NEXT
+*/
+
+document
+    .querySelector(".next")
+    .addEventListener(
+        "click",
+        () => {
+
+            currentSlide++;
+
+            if (
+                currentSlide >=
+                testimonials.length
+            ) {
+
+                currentSlide = 0;
+
+            }
+
+            showSlide(
+                currentSlide
+            );
+
+        }
+    );
+
+
+/*
+   PREVIOUS
+*/
+
+document
+    .querySelector(".prev")
+    .addEventListener(
+        "click",
+        () => {
+
+            currentSlide--;
+
+            if (
+                currentSlide < 0
+            ) {
+
+                currentSlide =
+                    testimonials.length - 1;
+
+            }
+
+            showSlide(
+                currentSlide
+            );
+
+        }
+    );
+
+
+/*
+   AUTO SLIDE
+*/
+
+setInterval(
+    () => {
+
+        currentSlide++;
+
+        if (
+            currentSlide >=
+            testimonials.length
+        ) {
+
+            currentSlide = 0;
+
+        }
+
+        showSlide(
+            currentSlide
+        );
+
+    },
+    6000
 );
 
 </script>
