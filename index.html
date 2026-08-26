@@ -1464,6 +1464,10 @@ footer {
         flex-direction: column;
     }
 }
+  .packages-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+}
 
 
 /* =========================================
@@ -1614,7 +1618,376 @@ footer {
         bottom: 80px;
     }
 }
+    /* =========================================
+   PROGRAM KELAS & PAKET
+========================================= */
 
+.packages-section {
+    background: #f7f3e8;
+}
+
+
+.packages-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* CARD */
+
+.package-card {
+
+    position: relative;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 28px;
+
+    border:
+        1px solid
+        rgba(18,55,42,.08);
+
+    box-shadow:
+        0 15px 45px
+        rgba(18,55,42,.05);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    overflow: hidden;
+}
+
+
+.package-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 25px 60px
+        rgba(18,55,42,.12);
+}
+
+
+/* FEATURED */
+
+.package-card.featured {
+
+    border:
+        2px solid
+        #c9a45c;
+
+    box-shadow:
+        0 20px 55px
+        rgba(201,164,92,.14);
+}
+
+
+/* POPULAR BADGE */
+
+.popular-badge {
+
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    background: #c9a45c;
+
+    color: #12372a;
+
+    padding:
+        7px 12px;
+
+    border-radius: 50px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+}
+
+
+/* ICON */
+
+.package-icon {
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #12372a;
+
+    border-radius: 18px;
+
+    font-size: 25px;
+
+    margin-bottom: 22px;
+}
+
+
+/* LABEL */
+
+.package-label {
+
+    color: #b08a45;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+
+/* TITLE */
+
+.package-card h3 {
+
+    font-size: 28px;
+
+    margin-bottom: 12px;
+
+    color: #12372a;
+}
+
+
+.package-card h3 span {
+
+    display: block;
+
+    font-size: 15px;
+
+    color: #64756d;
+
+    margin-top: 4px;
+
+    font-weight: 600;
+}
+
+
+/* DESCRIPTION */
+
+.package-description {
+
+    color: #66766f;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+
+    min-height: 70px;
+
+    margin-bottom: 22px;
+}
+
+
+/* PRICE */
+
+.package-price {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+}
+
+
+.package-price strong {
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    color: #12372a;
+
+    letter-spacing: -1.5px;
+}
+
+
+.package-price span {
+
+    color: #7b8983;
+
+    font-size: 13px;
+}
+
+
+/* OLD PRICE */
+
+.old-price {
+
+    color: #9a9a9a;
+
+    font-size: 12px;
+
+    text-decoration: line-through;
+
+    margin-bottom: 6px;
+}
+
+
+/* SAVING */
+
+.saving-badge {
+
+    display: inline-flex;
+
+    margin-top: 12px;
+
+    padding: 6px 12px;
+
+    background:
+        rgba(201,164,92,.15);
+
+    color: #9a742f;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* DIVIDER */
+
+.package-divider {
+
+    height: 1px;
+
+    background:
+        rgba(18,55,42,.08);
+
+    margin:
+        25px 0;
+}
+
+
+/* FEATURES */
+
+.package-features {
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+}
+
+
+.package-features li {
+
+    color: #52645b;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    padding-left: 2px;
+}
+
+
+/* NOTE */
+
+.package-note {
+
+    color: #52645b;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* BUTTON */
+
+.package-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 15px 20px;
+
+    border-radius: 50px;
+
+    background: #12372a;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition: .3s;
+}
+
+
+.package-btn:hover {
+
+    background: #c9a45c;
+
+    color: #12372a;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* BOTTOM TEXT */
+
+.package-bottom-text {
+
+    text-align: center;
+
+    margin-top: 45px;
+
+    color: #64756d;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.package-bottom-text span {
+
+    color: #c9a45c;
+
+    margin-right: 5px;
+}
+  
 </style>
 </head>
 
@@ -1794,97 +2167,351 @@ footer {
 </section>
 
 
+
 <!-- =========================================
-     STATISTICS
-     GANTI DENGAN DATA ASLI KLIEN
+     PILIHAN KELAS & PAKET
 ========================================= -->
 
-<section class="stats-section">
+<section class="packages-section" id="kelas">
 
-    <div class="stats-container">
+    <div class="section-container">
 
+        <div class="section-heading reveal">
 
-        <div class="stat reveal">
+            <span>
+                Pilihan Program
+            </span>
 
             <h2>
-                <span
-                    class="counter"
-                    data-target="500"
-                >
-                    0
-                </span>+
+                Pilih Kelas yang
+                <br>
+                Cocok Untukmu
             </h2>
 
             <p>
-                Member
+                Temukan program yang sesuai dengan
+                tujuanmu dalam menjaga dan menambah
+                hafalan Al-Qur'an.
             </p>
 
         </div>
 
 
-        <div class="stat reveal">
+        <div class="packages-grid">
 
-            <h2>
-                <span
-                    class="counter"
-                    data-target="10000"
+
+            <!-- ================================
+                 KELAS MUROJAAH
+            ================================= -->
+
+            <article class="package-card reveal">
+
+                <div class="package-icon">
+                    📖
+                </div>
+
+                <div class="package-label">
+                    KELAS MUROJAAH
+                </div>
+
+                <h3>
+                    Muroja’ah
+                </h3>
+
+                <p class="package-description">
+
+                    Cocok untuk kamu yang sudah memiliki
+                    hafalan dan ingin menjaganya agar
+                    tetap kuat & mutqin.
+
+                </p>
+
+                <div class="package-price">
+
+                    <strong>
+                        125K
+                    </strong>
+
+                    <span>
+                        / bulan
+                    </span>
+
+                </div>
+
+
+                <div class="package-divider"></div>
+
+
+                <ul class="package-features">
+
+                    <li>✓ 20x pertemuan/bulan</li>
+
+                    <li>✓ 5x per pekan</li>
+
+                    <li>✓ Setoran hingga 5 lembar / lebih</li>
+
+                    <li>✓ Waktu setoran fleksibel</li>
+
+                    <li>✓ Sistem privat & intensif</li>
+
+                    <li>✓ Setoran one by one via Video Call WhatsApp</li>
+
+                    <li>✓ E-Sertifikat / Syahadah</li>
+
+                    <li>✓ Bimbingan Tajwid dan Adab</li>
+
+                    <li>✓ Grup Motivasi dan Reminder</li>
+
+                    <li>✓ Rekap Hafalan Mingguan & Bulanan</li>
+
+                </ul>
+
+
+                <a
+                    href="#daftar"
+                    class="package-btn"
                 >
-                    0
-                </span>+
-            </h2>
+                    Daftar Kelas →
+                </a>
 
-            <p>
-                Murajaah
-            </p>
+            </article>
+
+
+
+            <!-- ================================
+                 KELAS ZIYADAH
+            ================================= -->
+
+            <article class="package-card featured reveal">
+
+                <div class="popular-badge">
+                    PALING DICARI
+                </div>
+
+                <div class="package-icon">
+                    📚
+                </div>
+
+                <div class="package-label">
+                    KELAS ZIYADAH
+                </div>
+
+                <h3>
+                    Ziyadah
+                </h3>
+
+                <p class="package-description">
+
+                    Cocok untuk kamu yang ingin fokus
+                    menambah hafalan, baik pemula maupun
+                    yang memiliki target cepat khatam.
+
+                </p>
+
+                <div class="package-price">
+
+                    <strong>
+                        100K
+                    </strong>
+
+                    <span>
+                        / bulan
+                    </span>
+
+                </div>
+
+
+                <div class="package-divider"></div>
+
+
+                <ul class="package-features">
+
+                    <li>✓ 20x pertemuan/bulan</li>
+
+                    <li>✓ 4x setoran hafalan + 1x muroja’ah tiap pekan</li>
+
+                    <li>✓ Setoran hingga 2 lembar / lebih</li>
+
+                    <li>✓ Waktu setoran fleksibel</li>
+
+                    <li>✓ Sistem privat & intensif</li>
+
+                    <li>✓ Setoran one by one via Video Call WhatsApp</li>
+
+                    <li>✓ E-Sertifikat / Syahadah</li>
+
+                    <li>✓ Bimbingan Tajwid dan Adab</li>
+
+                    <li>✓ Grup Motivasi dan Reminder</li>
+
+                    <li>✓ Rekap Hafalan Mingguan & Bulanan</li>
+
+                </ul>
+
+
+                <a
+                    href="#daftar"
+                    class="package-btn"
+                >
+                    Daftar Kelas →
+                </a>
+
+            </article>
+
+
+
+            <!-- ================================
+                 PAKET HEMAT MUROJAAH
+            ================================= -->
+
+            <article class="package-card saving-card reveal">
+
+                <div class="package-icon">
+                    ⭐
+                </div>
+
+                <div class="package-label">
+                    PAKET HEMAT
+                </div>
+
+                <h3>
+                    Muroja’ah
+                    <span>3 Bulan</span>
+                </h3>
+
+                <p class="package-description">
+                    Pilihan hemat untuk kamu yang ingin
+                    membangun konsistensi murajaah
+                    dalam jangka lebih panjang.
+                </p>
+
+
+                <div class="old-price">
+                    Harga normal 375K
+                </div>
+
+
+                <div class="package-price">
+
+                    <strong>
+                        275K
+                    </strong>
+
+                    <span>
+                        / 3 bulan
+                    </span>
+
+                </div>
+
+
+                <div class="saving-badge">
+                    Hemat 100K
+                </div>
+
+
+                <div class="package-divider"></div>
+
+
+                <p class="package-note">
+                    ✓ Mengikuti program Kelas Muroja’ah
+                    selama 3 bulan.
+                </p>
+
+
+                <a
+                    href="#daftar"
+                    class="package-btn"
+                >
+                    Ambil Paket →
+                </a>
+
+            </article>
+
+
+
+            <!-- ================================
+                 PAKET HEMAT ZIYADAH
+            ================================= -->
+
+            <article class="package-card saving-card reveal">
+
+                <div class="package-icon">
+                    🌟
+                </div>
+
+                <div class="package-label">
+                    PAKET HEMAT
+                </div>
+
+                <h3>
+                    Ziyadah
+                    <span>3 Bulan</span>
+                </h3>
+
+                <p class="package-description">
+                    Pilihan hemat untuk kamu yang ingin
+                    fokus menambah hafalan secara
+                    konsisten.
+                </p>
+
+
+                <div class="old-price">
+                    Harga normal 300K
+                </div>
+
+
+                <div class="package-price">
+
+                    <strong>
+                        225K
+                    </strong>
+
+                    <span>
+                        / 3 bulan
+                    </span>
+
+                </div>
+
+
+                <div class="saving-badge">
+                    Hemat 75K
+                </div>
+
+
+                <div class="package-divider"></div>
+
+
+                <p class="package-note">
+                    ✓ Mengikuti program Kelas Ziyadah
+                    selama 3 bulan.
+                </p>
+
+
+                <a
+                    href="#daftar"
+                    class="package-btn"
+                >
+                    Ambil Paket →
+                </a>
+
+            </article>
+
 
         </div>
 
 
-        <div class="stat reveal">
+        <div class="package-bottom-text">
 
-            <h2>
+            <span>✨</span>
 
-                <span
-                    class="counter"
-                    data-target="100"
-                >
-                    0
-                </span>%
-
-            </h2>
-
-            <p>
-                Komitmen
-            </p>
+            Pilih kelas yang paling sesuai
+            dengan tujuan hafalanmu.
 
         </div>
-
-
-        <div class="stat reveal">
-
-            <h2>
-
-                <span
-                    class="counter"
-                    data-target="3"
-                >
-                    0
-                </span>+
-
-            </h2>
-
-            <p>
-                Tahun Bertumbuh
-            </p>
-
-        </div>
-
 
     </div>
 
 </section>
-
-
 <!-- =========================================
      PRESTASI MEMBER
 ========================================= -->
